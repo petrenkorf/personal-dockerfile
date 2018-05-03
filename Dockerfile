@@ -1,0 +1,13 @@
+FROM nimmis/apache-php7
+
+RUN apt-get update
+
+# Dependências Laravel
+RUN apt-get install -y php7.0-mbstring php7.0-dom php7.0-zip
+RUN phpenmod mbstring dom zip
+
+# Habilita url rewrite
+RUN a2enmod rewrite
+RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+
+RUN service apache2 restart
