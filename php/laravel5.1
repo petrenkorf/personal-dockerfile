@@ -10,4 +10,9 @@ RUN phpenmod mbstring dom zip
 RUN a2enmod rewrite
 RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
+RUN composer global require hirak/prestissimo
+
+RUN apt-get autoremove
+RUN apt-get clean
+
 RUN service apache2 restart
