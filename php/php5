@@ -3,8 +3,8 @@ FROM nimmis/apache-php5
 RUN apt-get update
 
 # Dependências Laravel
-RUN apt-get install -y php-mbstring php-dom php-zip
-RUN phpenmod mbstring dom zip
+#RUN apt-get install -y php-mbstring php-dom php-zip
+#RUN phpenmod mbstring dom zip
 
 # Habilita url rewrite
 RUN a2enmod rewrite
