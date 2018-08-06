@@ -1,0 +1,18 @@
+FROM nimmis/apache-php5
+
+RUN apt-get update
+
+# Dependências Laravel
+RUN apt-get install -y php-mbstring php-dom php-zip
+RUN phpenmod mbstring dom zip
+
+# Habilita url rewrite
+RUN a2enmod rewrite
+RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+
+RUN composer global require hirak/prestissimo
+
+RUN apt-get autoremove
+RUN apt-get clean
+
+RUN service apache2 restart
